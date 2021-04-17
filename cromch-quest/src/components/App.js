@@ -10,13 +10,7 @@ function App() {
       <CromchBar />
 
       <CerealList />
-      <div
-        style={{
-          background: "linear-gradient(-45deg, #788cff, #b4c8ff)",
-        }}
-      >
-        <h1>Hello, React!</h1>
-      </div>
+
       <PlusButton />
     </div>
   );

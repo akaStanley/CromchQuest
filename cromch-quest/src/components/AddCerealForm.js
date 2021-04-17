@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { Button } from "reactstrap";
 
-function AddCereal(props) {
+function AddCerealForm(props) {
   const [name, setName] = useState(props.edit ? props.edit.name : "");
   const [notes, setNotes] = useState(props.edit ? props.edit.notes : "");
 
@@ -21,7 +22,7 @@ function AddCereal(props) {
       {props.edit ? (
         <>
           <input
-            placeholder="Update your item"
+            placeholder="Add a Cereal Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
             name="text"
@@ -32,7 +33,7 @@ function AddCereal(props) {
             value={notes}
             name="text"
           />
-          <button onClick={handleSubmit}>Update</button>
+          <Button onClick={handleSubmit}>Update</Button>
         </>
       ) : (
         <>
@@ -49,11 +50,13 @@ function AddCereal(props) {
             name="text"
           />
 
-          <button onClick={handleSubmit}>Add Cereal</button>
+          <Button color="primary" onClick={handleSubmit}>
+            Add Cereal
+          </Button>
         </>
       )}
     </form>
   );
 }
 
-export default AddCereal;
+export default AddCerealForm;

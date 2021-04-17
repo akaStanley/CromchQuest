@@ -1,31 +1,31 @@
 import React, { useState } from "react";
 import { Button } from "reactstrap";
-import AddCereal from "./AddCereal";
+import AddCerealForm from "./AddCerealForm";
 
-const Cereal = ({ todos, completeTodo, removeTodo, updateTodo }) => {
+const Cereal = ({ cereals, removeCereal, updateCereal }) => {
   const [edit, setEdit] = useState(null);
 
   const submitUpdate = (value) => {
-    updateTodo(edit.id, value);
+    updateCereal(edit.id, value);
     setEdit(null);
   };
 
   if (edit) {
-    return <AddCereal edit={edit} onSubmit={submitUpdate} />;
+    return <AddCerealForm edit={edit} onSubmit={submitUpdate} />;
   }
 
-  return todos.map((todo, index) => (
+  return cereals.map((cereal, index) => (
     <div key={index}>
-      <div key={todo.id} onClick={() => completeTodo(todo.id)}>
-        {todo.name}
+      <div>
+        {cereal.name}
         <br />
-        {todo.notes}
+        {cereal.notes}
       </div>
-      <div className="icons">
-        <Button color="danger" onClick={() => removeTodo(todo.id)}>
+      <div>
+        <Button color="danger" onClick={() => removeCereal(cereal.id)}>
           Delete
         </Button>
-        <Button color="warning" onClick={() => setEdit(todo)}>
+        <Button color="warning" onClick={() => setEdit(cereal)}>
           Edit
         </Button>
       </div>

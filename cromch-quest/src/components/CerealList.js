@@ -1,56 +1,45 @@
 import React, { useState } from "react";
-import AddCereal from "./AddCereal";
+import AddCerealForm from "./AddCerealForm";
 import Cereal from "./Cereal";
 
 function CerealList() {
-  const [todos, setTodos] = useState([]);
+  const [cereals, setCereals] = useState([]);
 
-  const addTodo = (todo) => {
-    if (!todo.name || /^\s*$/.test(todo.name)) {
+  const addCereal = (cereal) => {
+    if (!cereal.name || /^\s*$/.test(cereal.name)) {
       return;
     }
 
-    const newTodos = [todo, ...todos];
+    const newCereals = [cereal, ...cereals];
 
-    setTodos(newTodos);
-    console.log(...todos);
+    setCereals(newCereals);
+    console.log(...cereals);
   };
 
-  const updateTodo = (todoId, newValue) => {
+  const updateCereal = (cerealId, newValue) => {
     if (!newValue.name || /^\s*$/.test(newValue.name)) {
       return;
     }
 
-    setTodos((prev) =>
-      prev.map((item) => (item.id === todoId ? newValue : item))
+    setCereals((prev) =>
+      prev.map((item) => (item.id === cerealId ? newValue : item))
     );
   };
 
-  const removeTodo = (id) => {
-    const removedArr = [...todos].filter((todo) => todo.id !== id);
+  const removeCereal = (id) => {
+    const removedArr = [...cereals].filter((cereal) => cereal.id !== id);
 
-    setTodos(removedArr);
-  };
-
-  const completeTodo = (id) => {
-    let updatedTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        todo.isComplete = !todo.isComplete;
-      }
-      return todo;
-    });
-    setTodos(updatedTodos);
+    setCereals(removedArr);
   };
 
   return (
     <>
       <h1>What's the Cromch for Today?</h1>
-      <AddCereal onSubmit={addTodo} />
+      <AddCerealForm onSubmit={addCereal} />
       <Cereal
-        todos={todos}
-        completeTodo={completeTodo}
-        removeTodo={removeTodo}
-        updateTodo={updateTodo}
+        cereals={cereals}
+        removeCereal={removeCereal}
+        updateCereal={updateCereal}
       />
     </>
   );
