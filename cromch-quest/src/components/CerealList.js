@@ -34,7 +34,6 @@ function CerealList() {
 
   return (
     <>
-      <h1>What's the Cromch for Today?</h1>
       <AddCerealForm onSubmit={addCereal} />
       <Cereal
         cereals={cereals}

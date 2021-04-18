@@ -3,15 +3,17 @@ import { Button } from "reactstrap";
 
 const PlusButton = (props) => {
   return (
-    <div
-      style={{
-        padding: "50px",
-        float: "center",
-        position: "fixed",
-        bottom: 0,
-      }}
-    >
-      <Button color="primary">Add Cereal</Button>{" "}
+    <div style={{ width: "100%" }}>
+      <div
+        style={{
+          float: "right",
+          padding: "50px",
+          position: "fixed",
+          bottom: 0,
+        }}
+      >
+        <Button color="primary">Add Cereal</Button>
+      </div>
     </div>
   );
 };

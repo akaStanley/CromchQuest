@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Button } from "reactstrap";
+import {
+  Button,
+  FormGroup,
+  Label,
+  Input,
+  Modal,
+  ModalHeader,
+  ModalBody,
+} from "reactstrap";
 
 function AddCerealForm(props) {
   const [name, setName] = useState(props.edit ? props.edit.name : "");
@@ -21,38 +29,60 @@ function AddCerealForm(props) {
     <form onSubmit={handleSubmit}>
       {props.edit ? (
         <>
-          <input
-            placeholder="Add a Cereal Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            name="text"
-          />
-          <textarea
-            placeholder="Add details"
-            onChange={(e) => setNotes(e.target.value)}
-            value={notes}
-            name="text"
-          />
-          <Button onClick={handleSubmit}>Update</Button>
+          <Modal isOpen={props.edit}>
+            <ModalHeader>Edit Cereal</ModalHeader>
+            <ModalBody>
+              <FormGroup>
+                <Label>Cereal Name</Label>
+                <Input
+                  placeholder="Cereal Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  name="text"
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label>Details</Label>
+                <Input
+                  placeholder="Add Notes"
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                  type="textarea"
+                  name="text"
+                />
+              </FormGroup>
+              <Button color="primary" onClick={handleSubmit}>
+                Save
+              </Button>
+            </ModalBody>
+          </Modal>
         </>
       ) : (
         <>
-          <input
-            placeholder="Add a Cereal Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            name="text"
-          />
-          <textarea
-            placeholder="Add details"
-            onChange={(e) => setNotes(e.target.value)}
-            value={notes}
-            name="text"
-          />
-
-          <Button color="primary" onClick={handleSubmit}>
-            Add Cereal
-          </Button>
+          <FormGroup>
+            <Label>Cereal Name</Label>
+            <Input
+              placeholder="Add a Cereal"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              name="text"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label>Details</Label>
+            <Input
+              placeholder="Add Notes"
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              type="textarea"
+              name="text"
+            />
+          </FormGroup>
+          <div>
+            <Button color="primary" onClick={handleSubmit}>
+              Add Cereal
+            </Button>
+          </div>
         </>
       )}
     </form>
